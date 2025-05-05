@@ -1,86 +1,109 @@
-# Hệ Thống Huấn Luyện AI
+# Hướng Dẫn Hệ Thống AI Training
 
-## Tổng quan
-Đây là hệ thống huấn luyện AI chuyên về xử lý hình ảnh và trích xuất đặc trưng. Hệ thống được xây dựng dựa trên các công nghệ hiện đại như TensorFlow và OpenCV, cho phép thực hiện các tác vụ xử lý hình ảnh và học máy một cách hiệu quả.
+## Tổng Quan Hệ Thống
+Đây là một hệ thống full-stack dành cho việc huấn luyện AI, bao gồm frontend React và backend FastAPI. Hệ thống được thiết kế để quản lý và huấn luyện các mô hình AI.
 
-## Cấu trúc dự án
-```
-backend/
-├── data/           # Thư mục lưu trữ dữ liệu hình ảnh
-├── features/       # Thư mục lưu trữ các đặc trưng đã trích xuất
-├── venv/          # Môi trường ảo Python
-├── detect.py      # Script phát hiện đối tượng trong hình ảnh
-├── search.py      # Chức năng tìm kiếm hình ảnh tương tự
-├── extract_features.py  # Script trích xuất đặc trưng từ hình ảnh
-└── requirements.txt     # Danh sách các thư viện cần thiết
-```
+## Kiến Trúc Hệ Thống
 
-## Yêu cầu hệ thống
-- Python 3.7 trở lên
-- Hệ điều hành: Windows/Linux/MacOS
-- RAM tối thiểu: 8GB
-- GPU (khuyến nghị) để tăng tốc độ xử lý
+### Frontend (React)
+- Được xây dựng bằng Create React App
+- Hỗ trợ TypeScript
+- Giao diện người dùng hiện đại
+- Nằm trong thư mục `frontend`
 
-## Hướng dẫn cài đặt
-1. Tạo môi trường ảo:
-```bash
-cd backend
-python -m venv venv
-```
+### Backend (FastAPI)
+- Máy chủ API dựa trên Python
+- SQLAlchemy để quản lý cơ sở dữ liệu
+- Khả năng AI/ML với TensorFlow và scikit-learn
+- Nằm trong thư mục `backend`
 
-2. Kích hoạt môi trường ảo:
-- Windows:
-```bash
-venv\Scripts\activate
-```
-- Linux/Mac:
-```bash
-source venv/bin/activate
-```
+## Yêu Cầu Hệ Thống
+- Node.js và npm (cho frontend)
+- Python 3.x (cho backend)
+- PostgreSQL (cơ sở dữ liệu)
 
+## Hướng Dẫn Cài Đặt
+
+### Cài Đặt Frontend
+1. Di chuyển vào thư mục frontend:
+   ```bash
+   cd frontend
+   ```
+2. Cài đặt các thư viện cần thiết:
+   ```bash
+   npm install
+   ```
+3. Khởi động máy chủ phát triển:
+   ```bash
+   npm start
+   ```
+
+### Cài Đặt Backend
+1. Di chuyển vào thư mục backend:
+   ```bash
+   cd backend
+   ```
+2. Tạo và kích hoạt môi trường ảo:
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate  # Trên Windows
+   ```
 3. Cài đặt các thư viện cần thiết:
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Khởi động máy chủ backend:
+   ```bash
+   uvicorn app.main:app --reload
+   ```
 
-## Các thư viện chính
-- tensorflow: Framework học máy
-- tensorflow-hub: Thư viện mở rộng của TensorFlow
-- opencv-python: Xử lý hình ảnh
-- pillow: Thao tác với hình ảnh
-- matplotlib: Hiển thị và vẽ đồ thị
-- numpy: Tính toán số học
-- scipy: Các công cụ khoa học
-- scikit-learn: Các thuật toán học máy
+## Tính Năng Hệ Thống
+- Huấn luyện và quản lý mô hình AI
+- Tải lên và xử lý file
+- Tích hợp cơ sở dữ liệu
+- Xác thực người dùng
+- Theo dõi và quản lý phiên bản mô hình
 
-## Hướng dẫn sử dụng
+## Cấu Trúc Thư Mục
 
-### 1. Trích xuất đặc trưng
-Để trích xuất đặc trưng từ hình ảnh:
-```bash
-python extract_features.py
-```
-- Đặt hình ảnh cần xử lý trong thư mục `data/`
-- Kết quả sẽ được lưu trong thư mục `features/`
+### Frontend
+- `src/` - Mã nguồn
+- `public/` - Tài nguyên tĩnh
+- `node_modules/` - Các thư viện
+- Các file cấu hình (package.json, tsconfig.json)
 
-### 2. Phát hiện đối tượng
-Để chạy phát hiện đối tượng:
-```bash
-python detect.py
-```
-- Script sẽ phân tích hình ảnh và phát hiện các đối tượng
-- Kết quả sẽ được hiển thị và lưu lại
+### Backend
+- `app/` - Mã nguồn chính
+- `models/` - Các mô hình AI
+- `features/` - Trích xuất đặc trưng
+- `alembic/` - Quản lý cơ sở dữ liệu
+- `uploads/` - Lưu trữ file
+- `venv/` - Môi trường ảo Python
 
-### 3. Tìm kiếm hình ảnh
-Để sử dụng chức năng tìm kiếm:
-```bash
-python search.py
-```
-- Nhập hình ảnh cần tìm kiếm
-- Hệ thống sẽ trả về các hình ảnh tương tự
+## Hướng Dẫn Phát Triển
+1. Tuân thủ các quy tắc TypeScript trong phát triển frontend
+2. Xử lý lỗi đúng cách ở cả frontend và backend
+3. Cập nhật cơ sở dữ liệu thường xuyên
+4. Tài liệu hóa các API endpoint và cách sử dụng
+5. Kiểm tra kỹ lưỡng các thành phần và tính năng
 
-## Lưu ý
-- Đảm bảo đã cài đặt đầy đủ các thư viện trước khi sử dụng
-- Kiểm tra đường dẫn thư mục trước khi chạy các script
-- Nên sử dụng GPU để tăng tốc độ xử lý
-- Giữ cấu trúc thư mục như mô tả để đảm bảo hệ thống hoạt động đúng
+## Triển Khai
+- Frontend: Build và triển khai lên dịch vụ hosting tĩnh
+- Backend: Triển khai lên dịch vụ hỗ trợ Python
+- Cơ sở dữ liệu: Thiết lập PostgreSQL cho môi trường production
+
+## Hỗ Trợ và Bảo Trì
+- Cập nhật thư viện thường xuyên
+- Các bản vá bảo mật
+- Theo dõi hiệu suất
+- Quy trình sao lưu
+
+## Đóng Góp
+1. Fork repository
+2. Tạo nhánh tính năng
+3. Commit các thay đổi
+4. Push lên nhánh
+5. Tạo Pull Request
+
+## Giấy Phép
+[Chỉ định giấy phép của bạn ở đây]
