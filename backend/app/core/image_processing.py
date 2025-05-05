@@ -15,6 +15,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import Model
 from sklearn.metrics.pairwise import cosine_similarity
+import json
 
 # Load pre-trained MobileNetV2 for feature extraction
 mobilenet = MobileNetV2(weights="imagenet", include_top=False, pooling='avg')
@@ -128,14 +129,23 @@ def train_model_v2(image_data, labels, model_path="saved_features.pkl"):
 
         for img_bytes, label in zip(image_data, labels):
             feat = extract_features_from_bytes(img_bytes)
-            features_dict[label] = feat.tolist()  # Lưu mỗi label ứng với 1 vector
+            features_dict[label] = feat.tolist()  # Chuyển NumPy array sang list
 
+        # Lưu dưới dạng pickle
         with open(model_path, "wb") as f:
             pickle.dump(features_dict, f)
 
+        # Tạo đường dẫn JSON tương ứng
+        json_path = os.path.splitext(model_path)[0] + ".json"
+
+        # Lưu dưới dạng JSON
+        with open(json_path, "w") as f:
+            json.dump(features_dict, f)
+
         return {
             "status": "success",
-            "model_path": model_path,
+            "model_path_pickle": model_path,
+            "model_path_json": json_path,
             "num_samples": len(features_dict),
             "labels": list(features_dict.keys())
         }

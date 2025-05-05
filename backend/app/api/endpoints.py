@@ -45,14 +45,15 @@ async def train_images(files: List[UploadFile] = File(...)):
             return {
                 "status": "success",
                 "message": "Model trained successfully",
-                "model_path": result['model_path'],
+                "model_path_pickle": result['model_path_pickle'],
+                "model_path_json": result['model_path_json'],
                 "metadata": result
             }
         else:
             raise HTTPException(status_code=500, detail=result.get('message', 'Training failed'))
 
     except Exception as e:
-        print("TEST ERROR:", str(e))
+        print("TRAIN ERROR:", str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/test")
