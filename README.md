@@ -104,6 +104,3 @@
 3. Commit các thay đổi
 4. Push lên nhánh
 5. Tạo Pull Request
-
-## Giấy Phép
-[Chỉ định giấy phép của bạn ở đây]

@@ -26,30 +26,25 @@ def get_model_path(filename: str) -> str:
     return os.path.join(model_dir, filename)
 
 def extract_features_from_bytes(image_bytes):
-    """Extract features using MobileNetV2"""
     try:
-        # Convert bytes to numpy image
         nparr = np.frombuffer(image_bytes, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        
-        # Convert to RGB
+
+        if img is None:
+            raise ValueError("Ảnh không hợp lệ hoặc bị lỗi (decode failed).")
+
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        
-        # Resize to expected size
         img = cv2.resize(img, (224, 224))
-        
-        # Preprocess for MobileNetV2
+
         img = img_to_array(img)
         img = np.expand_dims(img, axis=0)
         img = preprocess_input(img)
-        
-        # Extract features
+
         features = mobilenet.predict(img)
-        features = features.flatten()
-        
-        return features
+        return features.flatten()
+
     except Exception as e:
-        print(f"Error extracting features: {str(e)}")
+        print(f"[ERROR] extract_features_from_bytes: {e}")
         raise
 
 def train_model_v1(image_data, labels):
